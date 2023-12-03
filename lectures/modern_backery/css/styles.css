@@ -113,6 +113,13 @@ a {
   font-weight: 600;
 }
 
+/* .button:disabled {
+  color: var(--color-brand-dark);
+  background-color: transparent;
+  border-color: currentColor;
+  cursor: not-allowed;
+} */
+
 /* Link */
 .link {
   color: var(--color-primary-light);
