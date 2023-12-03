@@ -1,6 +1,18 @@
-.chefs-title {
-  margin: 0 auto 80px;
-  position: relative;
+.chefs-section {
+  &__title {
+    position: relative;
+    margin: 0 auto 80px;
+  }
+}
+
+.section {
+  padding: 48px 0;
+
+  &__title {
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1.3;
+  }
 }
 
 .chefs-title::before,
