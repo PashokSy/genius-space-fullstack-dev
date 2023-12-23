@@ -44,12 +44,10 @@ let c = '12.9sxdcfgv';
 const aNum = Number(a);
 println(3.1, aNum);
 println(3.1, typeof aNum);
-let bNum = b.slice(0, 2);
-bNum = Number(bNum);
+let bNum = parseInt(b);
 println(3.2, bNum);
 println(3.2, typeof bNum);
-let cNum = c.slice(0, 4);
-cNum = Number(cNum);
+let cNum = parseFloat(c);
 println(3.2, cNum);
 println(3.2, typeof cNum);
 
@@ -95,10 +93,10 @@ object.city = 'Kyiv';
 console.log(object);
 println(9.1, JSON.stringify(object));
 delete object.city;
-object.likeFlowers = true;
+object['like flowers'] = true;
 console.log(object);
 println(9.2, JSON.stringify(object));
 
 //***10**
 // За допомогою циклу  “for…in” вивести в консоль ключі і значення об*єкта
-for (let key in object) println(10, key);
+for (let key in object) println(10, `${key}: ${object[key]}`);
