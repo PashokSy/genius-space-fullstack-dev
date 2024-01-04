@@ -1,0 +1,17 @@
+.buttonBlock {
+  display: flex;
+  flex-direction: column;
+}
+.buttonItem {
+  margin: 30px;
+  width: 80px;
+  height: 80px;
+}
+.form {
+  margin: 0 auto;
+  text-align: center;
+  padding: 3;
+}
+.input {
+  margin: 10px;
+}
