@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Lesson 9</title>
+  </head>
+  <body>
+    <main>
+      <form class="form">
+        <p>Name</p>
+        <input type="text" id="name" class="inputName" />
+        <p>LastName</p>
+        <input type="text" id="name" class="inputLastName" />
+        <p>Sex</p>
+        <input
+          type="radio"
+          name="radio"
+          value="female"
+          onchange="check()"
+        />female
+        <input type="radio" name="radio" value="male" onchange="check()" />male
+        <p>18?</p>
+        <input type="checkbox" id="age" />
+        <button type="submit">submit</button>
+      </form>
+    </main>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
