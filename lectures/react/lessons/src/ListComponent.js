@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import ListItemComponent from './ListItemComponent.js';
+import Button from './Button.js';
 
 const ListComponent = () => {
   const [item, setItem] = useState(['first element']);
@@ -17,12 +18,18 @@ const ListComponent = () => {
     setInput(value);
   };
 
+  const handleDelete = () => {
+    console.log('delete button clicked');
+  };
+
   return (
     <>
       <input onChange={onChangeHandler} value={input} />
       <ul>
         {item.map((element, index) => (
-          <ListItemComponent element={element} index={index} />
+          <ListItemComponent element={element} index={index}>
+            {<Button text={'delete'} onClick={handleDelete} type={'button'} />}
+          </ListItemComponent>
         ))}
       </ul>
       <button onClick={() => onClickHandler(input)}>Add new element</button>

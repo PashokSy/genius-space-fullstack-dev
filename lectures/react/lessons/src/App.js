@@ -1,12 +1,11 @@
-import Render from './Render.js';
-
 import './App.css';
+import MyClassComponent from './MyClassComponent';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Render />
+        <MyClassComponent />
       </header>
     </div>
   );

@@ -1,9 +1,8 @@
 const ListItemComponent = (props) => {
   return (
     <>
-      <li key={`${props.element}${props.index}`}>
-        {props.element} {props.index}
-      </li>
+      <li key={`${props.element}$`}>{props.element}</li>
+      {props.children}
     </>
   );
 };
