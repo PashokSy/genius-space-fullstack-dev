@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+
 import { TodoForm } from './TodoForm';
 import { Todo } from './Todo';
 import { EditTodoForm } from './EditTodoForm';
+import { useLocalStorage } from '../utils/useLocalStorage';
 
 uuidv4();
 
 export const TodoWrapper = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useLocalStorage('todos', []);
 
   const addTodo = async (todo) => {
     await setTodos([
