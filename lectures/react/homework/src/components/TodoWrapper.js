@@ -3,7 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { TodoForm } from './TodoForm';
 import { Todo } from './Todo';
 import { EditTodoForm } from './EditTodoForm';
-import { useLocalStorage } from '../utils/useLocalStorage';
+import {
+  useLocalStorage,
+  deleteFromLocalStorage,
+} from '../utils/useLocalStorage';
+import { TodoInfo } from './TodoInfo';
 
 uuidv4();
 
@@ -45,9 +49,15 @@ export const TodoWrapper = () => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const handleDeleteAll = () => {
+    deleteFromLocalStorage('todos');
+    setTodos([]);
+  };
+
   return (
     <div className="TodoWrapper">
       <h1>Todo List</h1>
+      <TodoInfo todos={todos} handleDeleteAll={handleDeleteAll} />
       <TodoForm addTodo={addTodo} />
       {todos.map((todo) =>
         todo.isEditing ? (

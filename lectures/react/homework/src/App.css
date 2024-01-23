@@ -40,11 +40,13 @@ h1 {
   outline: none;
   background: none;
   border: 1px solid #8758ff;
+  border-radius: 0.25rem 0 0 0.25rem;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
   width: 300px;
   color: #fff;
+  height: 2.375rem;
 }
 
 .todo-input::placeholder {
@@ -57,6 +59,17 @@ h1 {
   border: none;
   padding: 0.55rem;
   cursor: pointer;
+  border-radius: 0 0.25rem 0.25rem 0;
+  height: 2.375rem;
+}
+
+.delete-btn {
+  background: #8758ff;
+  color: #fff;
+  border: none;
+  padding: 0.45rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
 }
 
 .Todo {
@@ -88,4 +101,12 @@ h1 {
 .edit-icon,
 .delete-icon {
   cursor: pointer;
+}
+
+.TodoInfo {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  color: #fff;
 }
