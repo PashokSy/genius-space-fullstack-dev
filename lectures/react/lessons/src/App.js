@@ -1,40 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
 import './App.css';
-import { Unmount } from './Unmount';
+import { useMemo, useState } from 'react';
 
 function App() {
-  const inputRef = useRef();
-  // console.log(headerRef.current);
+  const [list, setList] = useState([1, 2, 3, 4, 5]);
 
-  const handleFocus = () => {
-    inputRef.current.focus();
+  const memorizedList = useMemo(() => {
+    return list;
+  }, [list]);
+
+  const handleListChange = () => {
+    setList([...list], 6);
   };
-
-  // const [value, setValue] = useState(0);
-  // const [isMounted, setIsMounted] = useState(false);
-
-  // useEffect(() => {
-  //   console.log('componentDidMount useEffect');
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log('componentDidUpdate useEffect');
-  // }, [value]);
-
-  // const handleClick = () => {
-  //   // setValue(value + 1);
-  //   setIsMounted(!isMounted);
-  // };
 
   return (
     <div className="App">
       <header className="App-header">
-        <input ref={inputRef} />
-        <p>text</p>
-        <button onClick={handleFocus}>Focus me</button>
-        {/* <p>{value}</p>
-        {isMounted ? <Unmount /> : <p>Text</p>}
-        <button onClick={handleClick}>Click me</button> */}
+        {list.map((item, index) => (
+          <p key={index}>{item}</p>
+        ))}
+        <button onClick={handleListChange}>button</button>
       </header>
     </div>
   );
