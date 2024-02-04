@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import VidCalendar from './VidCalendar';
 
 const Header = () => {
   return (
@@ -10,9 +9,9 @@ const Header = () => {
         <Text style={styles.titleBig}>
           Загальні бойові втрати російського окупанта
         </Text>
-        <View style={styles.blockCalendar}>
+        <View style={styles.blockData}>
           <Text style={styles.day}>700-й день війни</Text>
-          <VidCalendar />
+          <Text style={styles.date}>Станом на: 2 лютого</Text>
         </View>
       </View>
     </View>
@@ -30,8 +29,14 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '800',
   },
-  blockCalendar: {
+  blockData: {
     display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
+    borderRadius: 15,
+    padding: 5,
+    margin: 10,
   },
   day: {
     fontSize: 18,

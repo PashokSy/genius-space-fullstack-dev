@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, Text} from 'react-native';
+import {useSelector} from 'react-redux';
+
 import StatsItem from './StatsItem';
+import Footer from '../../../commons/footer/Footer';
 
 const stats = {
   message: 'The data were fetched successfully.',
@@ -209,6 +212,7 @@ const Stats = () => {
         statsDay={stats.data.records[0].increase.submarines}
         terms={terms.data.submarines}
       />
+      <Footer />
     </ScrollView>
   );
 };
