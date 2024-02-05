@@ -134,6 +134,9 @@ const terms = {
 };
 
 const DayInfo = () => {
+  const test = useSelector(state => state.date);
+  console.log('test', test);
+
   return (
     <View style={styles.dayInfoBlock}>
       <StatsItemDay
