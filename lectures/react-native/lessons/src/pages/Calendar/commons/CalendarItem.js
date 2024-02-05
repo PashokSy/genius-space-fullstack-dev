@@ -7,7 +7,7 @@ const CalendarItem = () => {
 
   return (
     <SafeAreaView style={styles.calendarBlock}>
-      <Text style={styles.calendarDay}>4 лютого</Text>
+      {/* <Text style={styles.calendarDay}>4 лютого</Text> */}
       <View style={styles.calendar}>
         <Calendar
           onDayPress={day => {
@@ -29,14 +29,9 @@ const CalendarItem = () => {
 const styles = StyleSheet.create({
   calendarBlock: {
     padding: 5,
+    paddingTop: 15,
     display: 'flex',
-  },
-  calendarDay: {
-    fontSize: 24,
-    color: 'white',
-    fontWeight: '700',
-    padding: 10,
-    textAlign: 'center',
+    marginBottom: 30,
   },
   calendar: {
     height: 300,

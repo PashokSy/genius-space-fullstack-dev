@@ -1,12 +1,13 @@
 import React from 'react';
-import {StyleSheet, SafeAreaView} from 'react-native';
+import {StyleSheet, SafeAreaView, ScrollView} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import CalendarItem from './commons/CalendarItem';
+import DayInfo from './commons/DayInfo';
 
 const Calendar = () => {
   return (
-    <SafeAreaView>
+    <ScrollView>
       <LinearGradient
         colors={['#0057b8', '#fff', '#ffd600']}
         start={{x: 0.0, y: 0.3}}
@@ -14,8 +15,9 @@ const Calendar = () => {
         locations={[0, 0.45, 0.75]}
         style={styles.linearGradient}>
         <CalendarItem />
+        <DayInfo />
       </LinearGradient>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 

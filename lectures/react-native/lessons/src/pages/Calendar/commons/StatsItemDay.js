@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {SvgUri} from 'react-native-svg';
 
-const StatsItem = ({statsAll, statsDay, terms}) => {
+const StatsItemDay = ({statsAll, statsDay, terms}) => {
   return (
     <View style={styles.statsBlock}>
       <SvgUri
@@ -11,7 +11,7 @@ const StatsItem = ({statsAll, statsDay, terms}) => {
         height={50}
         uri={terms.icon}
       />
-      <View>
+      <View style={styles.statsInfo}>
         <View style={styles.statsNumbers}>
           <Text style={styles.statsAll}>{statsAll}</Text>
           <Text style={styles.statsDay}>(+{statsDay})</Text>
@@ -25,31 +25,37 @@ const StatsItem = ({statsAll, statsDay, terms}) => {
 const styles = StyleSheet.create({
   statsBlock: {
     display: 'flex',
-    flexDirection: 'row',
-    marginTop: 10,
-    paddingBottom: 10,
-    borderBottomWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 5,
+    marginLeft: 10,
+    padding: 10,
+    borderWidth: 1,
+    width: 200,
+    height: 120,
+    flex: 1,
   },
   statsImage: {
-    height: 55,
-    width: 50,
-    marginRight: 15,
-    marginLeft: 5,
+    marginRight: 40,
+    marginLeft: 35,
     borderBottomWidth: 1,
   },
   statsAll: {
-    fontSize: 24,
+    fontSize: 15,
     color: 'black',
     fontWeight: '700',
   },
+  statsInfo: {
+    flex: 1,
+  },
   statsDay: {
-    fontSize: 20,
+    fontSize: 13,
     color: 'black',
     marginLeft: 10,
     fontWeight: '500',
   },
   statsText: {
-    fontSize: 18,
+    fontSize: 12,
     color: 'black',
   },
   statsNumbers: {
@@ -59,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StatsItem;
+export default StatsItemDay;
