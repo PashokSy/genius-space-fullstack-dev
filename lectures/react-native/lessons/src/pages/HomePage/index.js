@@ -6,13 +6,16 @@ import {useDispatch} from 'react-redux';
 import Stats from './commons/Stats';
 import Header from './commons/Header';
 import {addStats} from '../../redux/statsSlice';
+import {fetchStats} from '../../api';
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const test = 'test';
 
   useEffect(() => {
-    dispatch(addStats(test));
+    async function fetchData() {
+      dispatch(addStats(await fetchStats()));
+    }
+    fetchData();
   });
 
   return (
