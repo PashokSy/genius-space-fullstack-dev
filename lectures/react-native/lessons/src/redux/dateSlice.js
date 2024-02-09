@@ -5,7 +5,7 @@ const dateSlice = createSlice({
   initialState: {},
   reducers: {
     changeDate(state, action) {
-      state = action.payload;
+      Object.assign(state, {date: action.payload});
     },
   },
 });
