@@ -73,7 +73,7 @@ const terms = {
 };
 
 const Stats = () => {
-  const stats = useSelector(state => state.stats[0]);
+  const stats = useSelector(state => state.stats);
 
   return (
     <ScrollView>
