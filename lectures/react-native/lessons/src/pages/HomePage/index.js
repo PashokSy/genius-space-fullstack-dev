@@ -6,8 +6,8 @@ import {useDispatch} from 'react-redux';
 import Stats from './commons/Stats';
 import Header from './commons/Header';
 import {addStats} from '../../redux/statsSlice';
-import {fetchStats, fetchTerms} from '../../api';
 import {addTerms} from '../../redux/termsSlice';
+import {fetchStats, fetchTerms} from '../../api';
 
 const HomePage = () => {
   const dispatch = useDispatch();

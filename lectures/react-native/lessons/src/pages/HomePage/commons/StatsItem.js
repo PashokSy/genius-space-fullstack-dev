@@ -9,14 +9,14 @@ const StatsItem = ({statsAll, statsDay, terms}) => {
         style={styles.statsImage}
         width={100}
         height={50}
-        uri={terms.icon}
+        uri={terms?.icon}
       />
       <View>
         <View style={styles.statsNumbers}>
           <Text style={styles.statsAll}>{statsAll}</Text>
           <Text style={styles.statsDay}>(+{statsDay})</Text>
         </View>
-        <Text style={styles.statsText}>{terms.title}</Text>
+        <Text style={styles.statsText}>{terms?.title}</Text>
       </View>
     </View>
   );
