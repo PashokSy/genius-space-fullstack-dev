@@ -6,7 +6,8 @@ import {useDispatch} from 'react-redux';
 import Stats from './commons/Stats';
 import Header from './commons/Header';
 import {addStats} from '../../redux/statsSlice';
-import {fetchStats} from '../../api';
+import {fetchStats, fetchTerms} from '../../api';
+import {addTerms} from '../../redux/termsSlice';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const HomePage = () => {
   useEffect(() => {
     async function fetchData() {
       dispatch(addStats(await fetchStats()));
+      dispatch(addTerms(await fetchTerms()));
     }
     fetchData();
   });
