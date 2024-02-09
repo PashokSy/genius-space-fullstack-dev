@@ -14,7 +14,6 @@ const CalendarItem = () => {
 
   return (
     <SafeAreaView style={styles.calendarBlock}>
-      {/* <Text style={styles.calendarDay}>4 лютого</Text> */}
       <View style={styles.calendar}>
         <Calendar
           onDayPress={day => {

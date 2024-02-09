@@ -1,11 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, SafeAreaView, ScrollView} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {useDispatch, useSelector} from 'react-redux';
 
 import CalendarItem from './commons/CalendarItem';
 import DayInfo from './commons/DayInfo';
+import {fetchStatsDate} from '../../api';
+import {addStatsDate} from '../../redux/statsDateSlice';
 
 const Calendar = () => {
+  const dispatch = useDispatch();
+  const {date} = useSelector(state => state.date);
+
+  useEffect(() => {
+    async function fetchData() {
+      dispatch(
+        addStatsDate(
+          await fetchStatsDate(date ?? new Date().toISOString().split('T')[0]),
+        ),
+      );
+    }
+    fetchData();
+  });
+
   return (
     <ScrollView>
       <LinearGradient
