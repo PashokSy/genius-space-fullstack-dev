@@ -1,21 +1,10 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
+import {useSelector} from 'react-redux';
 
 const Header = () => {
-  // const monthNames = [
-  //   'Січень',
-  //   'Лютий',
-  //   'Березень',
-  //   'Квітень',
-  //   'Травень',
-  //   'Червень',
-  //   'Липень',
-  //   'Серпень',
-  //   'Вересень',
-  //   'Жовтень',
-  //   'Листопад',
-  //   'Грудень',
-  // ];
+  const stats = useSelector(state => state.stats[0]);
+
   const now = new Date();
   const options = {
     year: 'numeric',
@@ -31,7 +20,7 @@ const Header = () => {
           Загальні бойові втрати російського окупанта
         </Text>
         <View style={styles.blockData}>
-          <Text style={styles.day}>/700/-й день війни</Text>
+          <Text style={styles.day}>{stats?.data?.day} день війни</Text>
           <Text style={styles.date}>
             Станом на: {now.toLocaleDateString('uk-UA', options)}
           </Text>
