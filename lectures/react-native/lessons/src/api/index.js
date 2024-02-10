@@ -1,30 +1,24 @@
 import axios from 'axios';
 
-const baseUrl = 'https://russianwarship.rip/api/v2';
+axios.defaults.baseUrl = 'https://russianwarship.rip/api/v2';
 
-export const fetchStats = async () => {
-  const configObj = {
-    method: 'get',
-    url: `${baseUrl}/statistics/latest`,
-  };
+export const axiosRequest = async ({
+  method = 'GET',
+  url,
+  params = {},
+  responseType = 'json',
+  data = undefined,
+  headers = {'Content-Type': 'application/json'},
+}) => {
+  const response = await axios({
+    method,
+    url,
+    baseURL: axios.defaults.baseURL,
+    params,
+    responseType,
+    data,
+    headers,
+  });
 
-  return (await axios(configObj)).data;
-};
-
-export const fetchStatsDate = async date => {
-  const configObj = {
-    method: 'get',
-    url: `${baseUrl}/statistics/${date}`,
-  };
-
-  return (await axios(configObj)).data;
-};
-
-export const fetchTerms = async () => {
-  const configObj = {
-    method: 'get',
-    url: `${baseUrl}/terms/ua`,
-  };
-
-  return (await axios(configObj)).data;
+  return response.data;
 };
