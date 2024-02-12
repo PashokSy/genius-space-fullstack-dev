@@ -7,7 +7,8 @@ import Stats from './commons/Stats';
 import Header from './commons/Header';
 import {addStats} from '../../redux/statsSlice';
 import {addTerms} from '../../redux/termsSlice';
-import {fetchStats, fetchTerms} from '../../api';
+import {fetchStats} from '../../api/stats';
+import {fetchTerms} from '../../api/terms';
 
 const HomePage = () => {
   const dispatch = useDispatch();

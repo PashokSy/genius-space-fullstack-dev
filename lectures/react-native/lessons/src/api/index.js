@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseUrl = 'https://russianwarship.rip/api/v2';
+const baseUrl = 'https://russianwarship.rip/api/v2/';
 
 export const axiosRequest = async ({
   method = 'GET',
@@ -10,15 +10,21 @@ export const axiosRequest = async ({
   data = undefined,
   headers = {'Content-Type': 'application/json'},
 }) => {
-  const response = await axios({
-    method,
-    url,
-    baseURL: axios.defaults.baseURL,
-    params,
-    responseType,
-    data,
-    headers,
-  });
+  let response;
+
+  try {
+    response = await axios({
+      method,
+      url,
+      baseURL: baseUrl,
+      params,
+      responseType,
+      data,
+      headers,
+    });
+  } catch (error) {
+    throw error;
+  }
 
   return response.data;
 };

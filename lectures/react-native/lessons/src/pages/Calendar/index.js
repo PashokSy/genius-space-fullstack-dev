@@ -5,8 +5,8 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import CalendarItem from './commons/CalendarItem';
 import DayInfo from './commons/DayInfo';
-import {fetchStatsDate} from '../../api';
 import {addStatsDate} from '../../redux/statsDateSlice';
+import {fetchStatsDate} from '../../api/stats';
 
 const Calendar = () => {
   const dispatch = useDispatch();

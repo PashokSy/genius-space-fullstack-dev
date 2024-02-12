@@ -3,7 +3,7 @@ import {View, StyleSheet, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 
 const Header = () => {
-  const stats = useSelector(state => state.stats[0]);
+  const stats = useSelector(state => state.stats);
 
   const now = new Date();
   const options = {
