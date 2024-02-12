@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {Calendar, LocaleConfig} from 'react-native-calendars';
+import React, {useState} from 'react';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {Calendar} from 'react-native-calendars';
 import {useDispatch} from 'react-redux';
 import {changeDate} from '../../../redux/dateSlice';
 const CalendarItem = () => {

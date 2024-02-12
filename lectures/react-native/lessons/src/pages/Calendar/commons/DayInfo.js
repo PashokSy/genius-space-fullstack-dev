@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {ScrollView, Text, View, StyleSheet} from 'react-native';
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import StatsItemDay from './StatsItemDay';
@@ -92,8 +92,8 @@ const DayInfo = () => {
 const styles = StyleSheet.create({
   dayInfoBlock: {
     display: 'flex',
-    // flexDirection: 'row',
-    // flexWrap: 'wrap',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
 });
 
