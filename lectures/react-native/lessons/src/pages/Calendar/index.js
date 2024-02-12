@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, SafeAreaView, ScrollView} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, ScrollView} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -7,8 +7,10 @@ import CalendarItem from './commons/CalendarItem';
 import DayInfo from './commons/DayInfo';
 import {addStatsDate} from '../../redux/statsDateSlice';
 import {fetchStatsDate} from '../../api/stats';
+import ModalLoader from '../../commons/loader/ModalLoader';
 
 const Calendar = () => {
+  const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const {date} = useSelector(state => state.date);
 
@@ -25,6 +27,7 @@ const Calendar = () => {
 
   return (
     <ScrollView>
+      <ModalLoader visible={modal} />
       <LinearGradient
         colors={['#0057b8', '#fff', '#ffd600']}
         start={{x: 0.0, y: 0.3}}

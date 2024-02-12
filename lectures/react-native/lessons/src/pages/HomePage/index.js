@@ -10,8 +10,10 @@ import {addStats} from '../../redux/statsSlice';
 import {addTerms} from '../../redux/termsSlice';
 import {fetchStats} from '../../api/stats';
 import {fetchTerms} from '../../api/terms';
+import ModalLoader from '../../commons/loader/ModalLoader';
 
 const HomePage = () => {
+  const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,6 +26,7 @@ const HomePage = () => {
 
   return (
     <SafeAreaView>
+      <ModalLoader visible={modal} />
       <LinearGradient
         colors={['#0057b8', '#fff', '#ffd600']}
         start={{x: 0.0, y: 0.3}}
