@@ -5,6 +5,7 @@ import {useDispatch} from 'react-redux';
 
 import Stats from './commons/Stats';
 import Header from './commons/Header';
+import Footer from '../../commons/footer/Footer';
 import {addStats} from '../../redux/statsSlice';
 import {addTerms} from '../../redux/termsSlice';
 import {fetchStats} from '../../api/stats';
@@ -31,6 +32,7 @@ const HomePage = () => {
         style={styles.linearGradient}>
         <Header />
         <Stats />
+        <Footer />
       </LinearGradient>
     </SafeAreaView>
   );

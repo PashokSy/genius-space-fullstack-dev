@@ -1,27 +1,48 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View, Linking} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
-  faHome,
+  faLink,
   faArrowLeft,
   faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
+import {faGithub} from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
+  const onPressGenius = () => {
+    Linking.openURL(`https://genius.space/`);
+  };
+
+  const onPressGithub = () => {
+    Linking.openURL(
+      `https://github.com/PashokSy/gs-fullstack-lectures/tree/main/lectures/react-native/lessons`,
+    );
+  };
+
+  const onPressSavelife = () => {
+    Linking.openURL(`https://savelife.in.ua/`);
+  };
+
   return (
     <SafeAreaView style={styles.footer}>
       <Text style={styles.footerTitle}>Бажаєш збільшити статистику?</Text>
       <View style={styles.donate}>
         <FontAwesomeIcon icon={faArrowLeft} color={'black'} size={20} />
         <View style={styles.donateItem}>
-          <FontAwesomeIcon icon={faHome} color={'black'} size={20} />
-          <Text style={styles.donateName}>Повернись живим</Text>
+          <FontAwesomeIcon icon={faLink} color={'black'} size={20} />
+          <Text style={styles.donateName} onPress={onPressSavelife}>
+            Повернись живим
+          </Text>
         </View>
         <FontAwesomeIcon icon={faArrowRight} color={'black'} size={20} />
       </View>
       <View style={styles.contacts}>
-        <Text style={styles.footerName}>Genius Space</Text>
-        <FontAwesomeIcon icon={faHome} color={'black'} size={20} />
+        <Text style={styles.footerName} onPress={onPressGenius}>
+          Genius Space
+        </Text>
+        <Text onPress={onPressGithub}>
+          <FontAwesomeIcon icon={faGithub} color={'black'} size={20} />
+        </Text>
       </View>
     </SafeAreaView>
   );

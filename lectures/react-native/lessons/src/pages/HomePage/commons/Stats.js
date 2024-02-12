@@ -3,7 +3,6 @@ import {ScrollView, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import StatsItem from './StatsItem';
-import Footer from '../../../commons/footer/Footer';
 
 const Stats = () => {
   const stats = useSelector(state => state.stats);
@@ -86,7 +85,6 @@ const Stats = () => {
         statsDay={stats?.data?.increase?.submarines}
         terms={terms?.data?.submarines}
       />
-      <Footer />
     </ScrollView>
   );
 };
