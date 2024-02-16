@@ -50,6 +50,7 @@ app.put("/tasks/:id", (req, res) => {
 
   if (!foundTask) {
     res.status(404).json({ message: "Task not found" });
+    return
   }
 
   foundTask.text = updatedTask.text;
@@ -59,6 +60,12 @@ app.put("/tasks/:id", (req, res) => {
 
 app.delete("/tasks/:id", (req, res) => {
   const taskId = parseInt(req.params.id);
+   const foundTask = tasks.find((task) => task.id === taskId);
+
+   if (!foundTask) {
+     res.status(404).json({ message: "Task not found" });
+     return;
+   }
 
   tasks = tasks.filter((t) => t.id !== taskId);
 
