@@ -25,6 +25,14 @@ let tasks = [
 
 app.use(bodyParser.json());
 
+const checkExist = (id, res) => {
+  const foundTask = tasks.find((task) => task.id === id);
+
+  if (!foundTask) {
+    return res.status(404).json({ message: "Task not found" });
+  }
+};
+
 app.get("/", (req, res) => {
   res.send("Hello, Express");
 });
@@ -46,12 +54,7 @@ app.put("/tasks/:id", (req, res) => {
   const updatedTask = req.body;
   const taskId = parseInt(req.params.id);
 
-  const foundTask = tasks.find((task) => task.id === taskId);
-
-  if (!foundTask) {
-    res.status(404).json({ message: "Task not found" });
-    return
-  }
+  checkExist(taskId, res);
 
   foundTask.text = updatedTask.text;
 
@@ -60,12 +63,8 @@ app.put("/tasks/:id", (req, res) => {
 
 app.delete("/tasks/:id", (req, res) => {
   const taskId = parseInt(req.params.id);
-   const foundTask = tasks.find((task) => task.id === taskId);
 
-   if (!foundTask) {
-     res.status(404).json({ message: "Task not found" });
-     return;
-   }
+  checkExist(taskId, res);
 
   tasks = tasks.filter((t) => t.id !== taskId);
 
