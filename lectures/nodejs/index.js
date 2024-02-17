@@ -1,36 +1,27 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const sqlite3 = require("sqlite3").verbose();
 
+const dbName = "tasks.db";
 const port = 3000;
 
-let tasks = [
-  {
-    id: 1,
-    text: "Read a book",
-  },
-  {
-    id: 2,
-    text: "Walk a dog",
-  },
-  {
-    id: 3,
-    text: "Cook meal",
-  },
-  {
-    id: 4,
-    text: "Call mom",
-  },
-];
+const db = new sqlite3.Database(dbName);
 
 app.use(bodyParser.json());
 
 const checkExist = (id, res) => {
-  const foundTask = tasks.find((task) => task.id === id);
+  db.all("SELECT * FROM tasks", (err, row) => {
+    serverError(err, res);
 
-  if (!foundTask) {
-    return res.status(404).json({ message: "Task not found" });
-  }
+    if (!row) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+  });
+};
+
+const serverError = (err, res) => {
+  if (err) return res.status(500).json({ error: err.message });
 };
 
 app.get("/", (req, res) => {
@@ -38,37 +29,53 @@ app.get("/", (req, res) => {
 });
 
 app.get("/tasks", (req, res) => {
-  res.status(200).json(tasks);
+  db.all("SELECT * FROM tasks", (err, row) => {
+    serverError(err, res);
+
+    res.status(200).json(row);
+  });
+});
+
+app.get("/tasks/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+
+  db.get("SELECT * FROM tasks WHERE id = ?", id, (err, row) => {
+    serverError(err, res);
+    checkExist(row, res);
+
+    return res.status(200).json(row);
+  });
 });
 
 app.post("/tasks", (req, res) => {
   const newTask = req.body;
 
-  const newTaskId = tasks.at(-1).id + 1;
-  tasks.push({ id: newTaskId, text: newTask.text });
+  db.run("INSERT INTO tasks (text) VALUES (?)", [newTask.text], (err) => {
+    serverError(err, res);
 
-  res.status(201).json(tasks);
+    res.status(201).send();
+  });
 });
 
 app.put("/tasks/:id", (req, res) => {
-  const updatedTask = req.body;
-  const taskId = parseInt(req.params.id);
+  const { text } = req.body;
+  const id = parseInt(req.params.id);
 
-  checkExist(taskId, res);
+  db.run("UPDATE tasks SET text = ? WHERE id = ?", [text, id], (err) => {
+    serverError(err, res);
 
-  foundTask.text = updatedTask.text;
-
-  res.status(200).json(foundTask);
+    return res.status(200).json({ id, text });
+  });
 });
 
 app.delete("/tasks/:id", (req, res) => {
-  const taskId = parseInt(req.params.id);
+  const id = parseInt(req.params.id);
 
-  checkExist(taskId, res);
+  db.run("DELETE FROM tasks WHERE id = ?", id, (err) => {
+    serverError(err, res);
 
-  tasks = tasks.filter((t) => t.id !== taskId);
-
-  res.status(204).json(tasks);
+    return res.status(204).send();
+  });
 });
 
 app.listen(port, () => {
