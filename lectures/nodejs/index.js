@@ -1,7 +1,17 @@
+import "dotenv/config";
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const sqlite3 = require("sqlite3").verbose();
+const mongoose = require("mongoose");
+
+// TODO fix mongo IP whitelist
+const connectDB = (url) => {
+  return mongoose.connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+};
 
 const dbName = "tasks.db";
 const port = 3000;
@@ -79,5 +89,6 @@ app.delete("/tasks/:id", (req, res) => {
 });
 
 app.listen(port, () => {
+  connectDB(process.env.MONGO_URI);
   console.log(`Server listening on http://localhost:${port}`);
 });
