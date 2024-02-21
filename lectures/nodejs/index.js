@@ -3,9 +3,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const sqlite3 = require("sqlite3").verbose();
+const bcrypt = require("bcrypt");
 
 const { connectDB } = require("./config/db");
-const { Task } = require("./models/tasksModel");
+const Task = require("./models/tasksModel");
+const User = require("./models/userModel");
 
 const dbName = "tasks.db";
 const port = process.env.PORT || 5000;
@@ -28,13 +30,35 @@ app.get("/", (req, res) => {
   res.send("Hello, Express");
 });
 
+app.post("/register", async (req, res) => {
+  try {
+    const { firstName, lastName, email, role } = req.body;
+
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(req.body.password, salt);
+
+    const user = await User.create({
+      firstName,
+      lastName,
+      email,
+      password: hash,
+      role,
+    });
+
+    res.status(201).json({ firstName, lastName, email });
+  } catch (error) {
+    console.error("Register error: ", error);
+    serverError(error, res);
+  }
+});
+
 app.get("/tasks", async (req, res) => {
   try {
     const tasks = await Task.find();
 
     return res.status(200).json(tasks);
   } catch (error) {
-    console.error("Task creation error: ", error);
+    console.error("Tasks fetching error: ", error);
     serverError(error, res);
   }
 });
@@ -46,7 +70,7 @@ app.get("/tasks/:id", async (req, res) => {
 
     return res.status(200).json(task);
   } catch (error) {
-    console.error("Task creation error: ", error);
+    console.error("Task fetching error: ", error);
     serverError(error, res);
   }
 });
@@ -82,7 +106,7 @@ app.put("/tasks/:id", async (req, res) => {
 
     return res.status(201).json(task);
   } catch (error) {
-    console.error("Task creation error: ", error);
+    console.error("Task updating error: ", error);
     serverError(error, res);
   }
 });
@@ -95,7 +119,7 @@ app.delete("/tasks/:id", async (req, res) => {
 
     return res.status(204).send();
   } catch (error) {
-    console.error("Task creation error: ", error);
+    console.error("Task deleting error: ", error);
     serverError(error, res);
   }
 });
