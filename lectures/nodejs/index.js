@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 const { connectDB } = require("./config/db");
 const Task = require("./models/tasksModel");
 const User = require("./models/userModel");
+const checkAuth = require("./middleware/checkAuth");
 
 const port = process.env.PORT || 5000;
 
@@ -146,6 +147,10 @@ app.delete("/tasks/:id", async (req, res) => {
     console.error("Task deleting error: ", error);
     serverError(error, res);
   }
+});
+
+app.get("/books", checkAuth, async (req, res) => {
+  return res.send("All books");
 });
 
 app.listen(port, () => {
