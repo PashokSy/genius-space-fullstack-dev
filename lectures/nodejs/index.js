@@ -2,17 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const sqlite3 = require("sqlite3").verbose();
 const bcrypt = require("bcrypt");
 
 const { connectDB } = require("./config/db");
 const Task = require("./models/tasksModel");
 const User = require("./models/userModel");
 
-const dbName = "tasks.db";
 const port = process.env.PORT || 5000;
-
-const db = new sqlite3.Database(dbName);
 
 app.use(bodyParser.json());
 
