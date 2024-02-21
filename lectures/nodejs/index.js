@@ -45,7 +45,35 @@ app.post("/register", async (req, res) => {
       role,
     });
 
-    res.status(201).json({ firstName, lastName, email });
+    return res.status(201).json({ firstName, lastName, email });
+  } catch (error) {
+    console.error("Register error: ", error);
+    serverError(error, res);
+  }
+});
+
+app.post("/login", async (req, res) => {
+  try {
+    const { email, password: pass } = req.body;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    const isValid = await bcrypt.compare(pass, user.password);
+
+    if (!isValid) {
+      return res.status(400).json({
+        message: "Invalid password or email",
+      });
+    }
+
+    const { password, ...userData } = user._doc;
+
+    return res.status(200).json(userData);
   } catch (error) {
     console.error("Register error: ", error);
     serverError(error, res);
