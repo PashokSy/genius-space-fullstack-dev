@@ -1,6 +1,6 @@
 const fs = require("fs");
 const http = require("http");
-const { readFile, appendFile, writeFile } = require("fs/promises");
+const { readFile, appendFile, writeFile, rename } = require("fs/promises");
 
 async function readHelloFile() {
   try {
@@ -31,6 +31,29 @@ async function writeToFile(fileName, data) {
   }
 }
 writeFile("writeFile.txt", "I love to write");
+
+async function renameFile(from, to) {
+  try {
+    await rename(from, to);
+    console.log(`File ${from} renamed to ${to}`);
+  } catch (error) {
+    console.error(error);
+  }
+}
+renameFile("writeFile.txt", "renamedFile.txt");
+
+fs.open("newFile.txt", "a", (err, file) => {
+  if (err) throw err;
+
+  fs.write(file, "fs write", (err) => {
+    if (err) throw err;
+    console.log("fs content added to the file");
+    fs.close(file, (err) => {
+      if (err) throw err;
+      console.log("fs file closed ");
+    });
+  });
+});
 
 http
   .createServer(function (req, res) {
