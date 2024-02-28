@@ -1,6 +1,6 @@
 const fs = require("fs");
 const http = require("http");
-const { readFile, appendFile } = require("fs/promises");
+const { readFile, appendFile, writeFile } = require("fs/promises");
 
 async function readHelloFile() {
   try {
@@ -10,7 +10,7 @@ async function readHelloFile() {
     console.error(error);
   }
 }
-// readHelloFile();
+readHelloFile();
 
 async function appendToFile(fileName, data) {
   try {
@@ -20,8 +20,17 @@ async function appendToFile(fileName, data) {
     console.error(error);
   }
 }
-
 appendToFile("newFile.txt", "I love node");
+
+async function writeToFile(fileName, data) {
+  try {
+    await writeFile(fileName, data);
+    console.log("Write to file successfully");
+  } catch (error) {
+    console.error(error);
+  }
+}
+writeFile("writeFile.txt", "I love to write");
 
 http
   .createServer(function (req, res) {
