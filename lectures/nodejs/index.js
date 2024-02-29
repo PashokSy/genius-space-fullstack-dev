@@ -1,6 +1,14 @@
 const fs = require("fs");
 const http = require("http");
-const { readFile, appendFile, writeFile, rename } = require("fs/promises");
+const {
+  readFile,
+  appendFile,
+  writeFile,
+  rename,
+  unlink,
+} = require("fs/promises");
+
+const deleted = "./deleted.txt";
 
 async function readHelloFile() {
   try {
@@ -30,7 +38,7 @@ async function writeToFile(fileName, data) {
     console.error(error);
   }
 }
-writeFile("writeFile.txt", "I love to write");
+writeToFile("writeFile.txt", "I love to write");
 
 async function renameFile(from, to) {
   try {
@@ -41,6 +49,16 @@ async function renameFile(from, to) {
   }
 }
 renameFile("writeFile.txt", "renamedFile.txt");
+
+// async function deleteFile(fileName) {
+//   try {
+//     await unlink(fileName);
+//     console.log(`File ${fileName} deleted`);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+// deleteFile("deleted.txt");
 
 fs.open("newFile.txt", "a", (err, file) => {
   if (err) throw err;
