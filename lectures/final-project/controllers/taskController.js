@@ -91,3 +91,14 @@ export const getTasksByUserId = async (req, res) => {
     res.status(400).json({ message: 'Failed to find the tasks' });
   }
 };
+
+export const getAllTasks = async (req, res) => {
+  try {
+    const tasks = await Task.find();
+
+    return res.status(200).json(tasks);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ message: 'Failed to find all tasks' });
+  }
+};
