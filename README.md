@@ -37,3 +37,7 @@ React Application
 | Delete | /tasks/:id |                                          ":id": String<br>none                                           | none                                                                                                                | 204 No Content  | Delete one task by ID |
 |  Post  | /register  | "firstName": String<br>"lastName": String<br>"email": String<br>"password": String<br>"role": String<br> | "firstName": String<br>"lastName": String<br>"email": String                                                        | 201 Created     | Register new user     |
 |  Post  |   /login   |                                  "email": String<br>"password": String                                   | "\_id": String<br>"firstName": String<br>"lastName": String<br>"email": String<br>"role": String<br>"\_\_v": Number | 200 OK          | Login user            |
+
+### Task Manager API
+
+![Task Manager API Screenshot](https://i.ibb.co/3Bd1zXd/image.png)
