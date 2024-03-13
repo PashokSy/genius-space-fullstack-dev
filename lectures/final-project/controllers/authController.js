@@ -16,7 +16,7 @@ export const signIn = async (req, res) => {
       role,
     });
 
-    return res.status(201).json({ firstName, lastName, email });
+    return res.status(201).json({ username, email });
   } catch (error) {
     console.error('Register error: ', error);
     res.status(500).json({ message: error.message });
@@ -44,10 +44,10 @@ export const logIn = async (req, res) => {
     }
 
     return res
-      .status(201)
+      .status(200)
       .json({ username: user.username, email: user.email, role: user.role });
   } catch (error) {
-    console.error('Register error: ', error);
+    console.error('Login error: ', error);
     res.status(500).json({ message: error.message });
   }
 };
